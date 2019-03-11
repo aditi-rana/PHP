@@ -11,15 +11,14 @@
   <input type="submit" value="Submit">
 </form> 
 <?php
+$fileFromSystem = file_get_contents("data.txt");
+$todoCollection = unserialize($fileFromSystem);
 
-$file_lines = file('data.txt');
-    //for($i = 0; $i < sizeof($_SESSION['todo']); $i++) { 
-        foreach ($file_lines as $line) { ?>
-        <li>
-            <?php echo $line; ?>
-            <input type = 'button' value ='Remove' onclick='location.href = "removeItem.php?index=<?php echo $i; ?>"'>
-        </li>  
-    <?php } ?>
-
+for($x = 0; $x < count($todoCollection); $x++) {
+  echo $todoCollection[$x]['caption'];
+  echo $todoCollection[$x]['isCompleted'];
+  echo "<br>";
+}
+?>
 </body>
 </html>
